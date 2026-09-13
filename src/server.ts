@@ -1,3 +1,3 @@
-const cat : number = 5;
+const cat : string = "Meow";
 
 console.log(cat);
