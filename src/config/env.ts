@@ -1,9 +1,19 @@
 import "dotenv/config";
+import * as z from "zod";
+
+const envSchema = z.object({
+  PORT: z.coerce.number().int().min(1).max(65535).default(5000),
+    NODE_ENV: z
+    .enum(["development", "production", "test"])
+    .default("development"),
+})
 
 
-const PORT = Number(process.env.PORT) || 5000;
+const result = envSchema.safeParse(process.env);
 
-export const env = {
-  PORT,
-  NODE_ENV: process.env.NODE_ENV || "development",
-};
+if (!result.success) {
+  console.error("Invalid environment variables:",  z.treeifyError(result.error));
+  process.exit(1);
+}
+
+export const env = result.data;
