@@ -1,5 +1,5 @@
 import express from "express";
-import v1Router from "./router/v1/index.router.js";
+import v1Router from "./routers/v1/index.router.js";
 import { errorHandler } from "./middlewares/error-handler.middleware.js";
 
 const app = express();
