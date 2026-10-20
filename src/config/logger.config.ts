@@ -3,20 +3,30 @@ import winston from "winston";
 const logger = winston.createLogger({
   level: "debug",
 
-  format: winston.format.combine(
-    winston.format.timestamp({
-      format: "YYYY-MM-DD HH:mm:ss",
-    }),
-    winston.format.colorize({ all: true }),
-    winston.format.printf(({ timestamp, level, message }) => {
-      return `${timestamp} [${level}]: ${message}`;
-    }),
-  ),
-
   transports: [
-    new winston.transports.Console(),
+    // Human-readable, colored terminal output
+    new winston.transports.Console({
+      format: winston.format.combine(
+        winston.format.timestamp({
+          format: "YYYY-MM-DD HH:mm:ss",
+        }),
+        
+        winston.format.colorize({ all: true }),
+        winston.format.printf(({ level, message, timestamp, ...data }) => {
+          return `${timestamp} [${level}]: ${message} ${
+            Object.keys(data).length ? JSON.stringify(data) : ""
+          }`;
+        }),
+      ),
+    }),
+
+    // Clean structured logs for production tools
     new winston.transports.File({
       filename: "logs/combined.log",
+      format: winston.format.combine(
+        winston.format.timestamp(),
+        winston.format.json(),
+      ),
     }),
   ],
 });
