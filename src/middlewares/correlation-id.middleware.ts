@@ -8,7 +8,6 @@ export const attachCorrelationIdMiddleware = (_req: Request, res: Response, next
     res.setHeader("x-correlation-id", correlationId);
     
     asyncLocalStorage.run({correlationId : correlationId}, ()=>{
-        console.log("Correlation ID:", correlationId);
         next();
     })
 }

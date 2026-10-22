@@ -6,9 +6,9 @@ import { attachCorrelationIdMiddleware } from "./middlewares/correlation-id.midd
 const app = express();
 
 app.use(express.json());
- app.use(attachCorrelationIdMiddleware); // Add the correlation ID middleware
-// Add routes and middleware here
-app.use("/api/v1", v1Router); // Assuming v1Router is defined and imported
+ app.use(attachCorrelationIdMiddleware); // the correlation ID middleware
+// routes and middleware here
+app.use("/api/v1", v1Router); //  v1Router is defined and imported
 app.use(errorHandler); 
 
 export default app;

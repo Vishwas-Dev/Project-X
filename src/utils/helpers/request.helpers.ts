@@ -8,5 +8,5 @@ type AsyncLocalStorageType = {
  export const getCorrelationId = () => {
     const asyncStore = asyncLocalStorage.getStore();
 
-    return asyncStore?.correlationId ?? 'unknown-error-while-creating=correlationId';
+    return asyncStore?.correlationId ?? 'unknown';
  }
