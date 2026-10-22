@@ -1,4 +1,5 @@
 import winston from "winston";
+import { getCorrelationId } from "../utils/helpers/request.helpers.js";
 
 const logger = winston.createLogger({
   level: "debug",
@@ -13,7 +14,7 @@ const logger = winston.createLogger({
         
         winston.format.colorize({ all: true }),
         winston.format.printf(({ level, message, timestamp, ...data }) => {
-          return `${timestamp} [${level}]: ${message} ${
+          return `${timestamp} [${level}] [${getCorrelationId()}]: ${message} ${
             Object.keys(data).length ? JSON.stringify(data) : ""
           }`;
         }),
