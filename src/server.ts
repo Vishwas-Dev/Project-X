@@ -4,7 +4,7 @@ import { env } from "./config/env.js";
 import logger from './config/logger.config.js';
 
 app.listen(env.PORT, () => {
-  logger.info("Server started", {data: { port: env.PORT }});
+  logger.info("Server started", { port: env.PORT });
   console.log(`Server running on http://localhost:${env.PORT}`);
 
 
