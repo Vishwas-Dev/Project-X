@@ -1,4 +1,24 @@
+# Dependencies
 node_modules/
+
+# Build output
 dist/
+
+# Personal notes
 notes/
+
+# Environment secrets
 .env
+.env.*
+!.env.example
+
+# Logs
+logs/
+*.log
+
+# Coverage reports
+coverage/
+
+# OS files
+.DS_Store
+Thumbs.db
